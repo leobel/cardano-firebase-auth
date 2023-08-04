@@ -13,6 +13,7 @@ function readEnvPrivateKey(name: string): string {
 }
 
 export const config = {
+  websiteUri: readEnv('WEBSITE_URI'),
   serviceAccountProjectId: readEnv('SERVICE_ACCOUNT_PROJECT_ID'),
   serviceAccountEmail: readEnv('SERVICE_ACCOUNT_EMAIL'),
   serviceAccountPrivateKey: readEnvPrivateKey('SERVICE_ACCOUNT_PRIVATE_KEY'),

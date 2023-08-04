@@ -43,6 +43,9 @@ interface RequestMessageData {
 
   // mainnet:
   network: string;
+
+  // wallet
+  wallet: string;
 }
 
 export const requestMessage = functions.https.onCall(async (data: RequestMessageData) => {
@@ -53,8 +56,11 @@ export const requestMessage = functions.https.onCall(async (data: RequestMessage
   const now = new Date();
   const fifteenMinutes = 900000;
   const expirationTime = new Date(now.getTime() + fifteenMinutes);
+  const websiteUrl = new URL(config.websiteUri);
 
   const params = {
+    domain: websiteUrl.hostname,
+    uri: websiteUrl.toString(),
     statement: 'To authenticate please sign this message.',
     expirationTime: expirationTime.toISOString(),
     notBefore: now.toISOString(),
@@ -71,6 +77,7 @@ export const requestMessage = functions.https.onCall(async (data: RequestMessage
       ...params,
       address: data.address,
       network: data.network,
+      wallet: data.wallet
     });
     return response;
   }

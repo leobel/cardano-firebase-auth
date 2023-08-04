@@ -23,12 +23,13 @@ describe("greet-the-world", () => {
 
   it("should respond with a message to sign", async () => {
     const data = {
-      "address": "addr1",
+      "address": "addr1q8ezcmwg9auy30vdfgpk5tmxsurv5jv8me50h9nz390we8w7e28nn969w0auevwz6dylkf8hg8l8knwpj6flp53g0naqga9k8f",
       "networkType": "cardano",
-      "network": "testnet"
+      "network": "testnet",
+      "wallet": 'Eternl'
     }
 
     const response = await httpsCallable<any, any>(functions, 'ext-greet-the-world-requestMessage')(data);
-    expect(response.data.id).to.equal('1');
+    expect(response.data.id.length).to.equal(32);
   }).timeout(10000);
 });
