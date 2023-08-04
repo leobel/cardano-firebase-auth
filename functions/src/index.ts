@@ -19,15 +19,18 @@ export const greetTheWorld = functions.https.onRequest(
     const greeting = `${consumerProvidedGreeting} World from ${instanceId}`;
 
     res.send(greeting);
-});
+  });
 
-const app = admin.initializeApp({
-  credential: cert({
-    projectId: config.serviceAccountProjectId,
-    clientEmail: config.serviceAccountEmail,
-    privateKey: config.serviceAccountPrivateKey,
-  })
-});
+const app = admin.initializeApp(
+  // { projectId: 'demo-test' } // this is for auth works properly and insert users in demo-test db (internally they have the users but not show in the UI)
+  {
+    credential: cert({
+      projectId: config.serviceAccountProjectId,
+      clientEmail: config.serviceAccountEmail,
+      privateKey: config.serviceAccountPrivateKey,
+    })
+  }
+);
 
 const auth = admin.auth(app);
 
@@ -91,6 +94,7 @@ interface IssueTokenData {
   networkType: NetworkType;
   message: string;
   signature: string;
+  key: string;
 }
 
 export const issueToken = functions.https.onCall(async (data: IssueTokenData) => {
@@ -104,20 +108,25 @@ export const issueToken = functions.https.onCall(async (data: IssueTokenData) =>
   const params = {
     message: data.message,
     signature: data.signature,
+    key: data.key
   };
 
   let uid: string | null = null;
   let address: string | null = null;
 
   if (data.networkType === 'cardano') {
-    const response = await verifyMessage({
-      ...params,
-    });
-    uid = response.profileId;
-    address = response.address;
+    try {
+      const response = await verifyMessage({
+        ...params,
+      });
+      uid = response.profileId;
+      address = response.address;
+    } catch (error) {
+      throw new functions.https.HttpsError('invalid-argument', `Invalid signature: ${data.signature}`);
+    }
   }
   else {
-    throw new functions.https.HttpsError('invalid-argument', `Not supported network: ${data.networkType}`);
+    throw new functions.https.HttpsError('invalid-argument', `Not supported network type: ${data.networkType}`);
   }
 
   if (!(await userExists(auth, uid))) {

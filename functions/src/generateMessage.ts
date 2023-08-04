@@ -27,7 +27,7 @@ export function generateMessage(data: RequestMessageData): Promise<ResponseMessa
     const response = {
         id: id,
         message: message,
-        profileId: '0x'+profileId
+        profileId: profileId
     }
     return Promise.resolve(response);
 }
