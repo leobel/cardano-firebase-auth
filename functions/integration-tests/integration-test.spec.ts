@@ -31,5 +31,6 @@ describe("greet-the-world", () => {
 
     const response = await httpsCallable<any, any>(functions, 'ext-greet-the-world-requestMessage')(data);
     expect(response.data.id.length).to.equal(32);
+    expect(response.data.profileId.length).to.equal(58);
   }).timeout(10000);
 });
