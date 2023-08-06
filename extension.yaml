@@ -11,13 +11,16 @@ displayName: Cardano Wallet Authentication
 
 # Brief description of the task your extension performs (~1 sentence)
 description: >-
-  Cardano wallet authentication flow using asymetric cryptography.
+  Cardano wallet authentication using asymmetric cryptography.
 
 license: Apache-2.0  # https://spdx.org/licenses/
 
+author:
+  authorName: Leobel Izquierdo
+  url: https://github.com/leobel
+
 # Public URL for the source code of your extension.
-# TODO:  Replace this with your GitHub repo.
-sourceUrl: https://github.com/ORG_OR_USER/REPO_NAME
+sourceUrl: https://github.com/leobel/cardano-firebase-auth
 
 # Specify whether a paid-tier billing plan is required to use your extension.
 # Learn more in the docs: https://firebase.google.com/docs/extensions/reference/extension-yaml#billing-required-field
