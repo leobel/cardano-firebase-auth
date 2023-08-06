@@ -30,6 +30,19 @@ billingRequired: true
 # required for your extension to operate.
 # Learn more in the docs:
 # https://firebase.google.com/docs/extensions/reference/extension-yaml#apis-field
+apis:
+  - apiName: iam.googleapis.com
+    reason: To sign custom authentication token
+  - apiName: iamcredentials.googleapis.com
+    reason: To sign custom authentication token
+  - apiName: stackdriver.googleapis.com
+    reason: Monitoring
+  - apiName: monitoring.googleapis.com
+    reason: Monitoring
+  - apiName: logging.googleapis.com
+    reason: Monitoring
+  - apiName: secretmanager.googleapis.com
+    reason: Securely storing and reading OAuth 2.0 client secret
 
 # In a `roles` field, list any IAM access roles required for your extension to operate.
 # Learn more in the docs:
