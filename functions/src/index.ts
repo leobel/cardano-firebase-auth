@@ -42,7 +42,7 @@ interface RequestMessageData {
   networkType: NetworkType;
 
   // addr...:
-  address?: string;
+  address: string;
 
   // mainnet:
   network: string;
