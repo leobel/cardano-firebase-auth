@@ -8,7 +8,7 @@ import { getAuth, connectAuthEmulator } from "firebase/auth";
 chai.use(chaiAsPromised)
 const expect = chai.expect;
 
-describe("greet-the-world", () => {
+describe("tangocrypto-auth", () => {
   let functions: Functions;
 
   before(() => {
@@ -21,9 +21,9 @@ describe("greet-the-world", () => {
   })
 
   it("should respond with the configured greeting", async () => {
-    const expected = "Hello World from greet-the-world";
+    const expected = "Hello World from tangocrypto-auth";
 
-    const httpFunctionUri = "http://localhost:5001/demo-test/us-central1/ext-greet-the-world-greetTheWorld/";
+    const httpFunctionUri = "http://localhost:5001/demo-test/us-central1/ext-tangocrypto-auth-greetTheWorld/";
     const res = await axios.get(httpFunctionUri);
 
     expect(res.data).to.eql(expected);
@@ -37,7 +37,7 @@ describe("greet-the-world", () => {
       "wallet": 'Eternl'
     }
 
-    const response = await httpsCallable<any, any>(functions, 'ext-greet-the-world-requestMessage')(data);
+    const response = await httpsCallable<any, any>(functions, 'ext-tangocrypto-auth-requestMessage')(data);
     expect(response.data.id.length).to.equal(32);
     expect(response.data.profileId.length).to.equal(58);
   })
@@ -85,7 +85,7 @@ Not Before: 2023-08-04T12:32:31.364Z`,
       key: "a401010327200621582083320c141cc15bcea0857d2ecea37a63ec4b05ccc0f37c9abe4b367b5da8c0f8"
     }
 
-    await expect(httpsCallable<any, any>(functions, 'ext-greet-the-world-issueToken')(data)).to.eventually.rejectedWith(Error)
+    await expect(httpsCallable<any, any>(functions, 'ext-tangocrypto-auth-issueToken')(data)).to.eventually.rejectedWith(Error)
 
   })
 
@@ -108,7 +108,7 @@ Not Before: 2300-08-04T12:32:31.364Z`,
       key: "a401010327200621582083320c141cc15bcea0857d2ecea37a63ec4b05ccc0f37c9abe4b367b5da8c0f8"
     }
 
-    await expect(httpsCallable<any, any>(functions, 'ext-greet-the-world-issueToken')(data)).to.eventually.rejectedWith(Error)
+    await expect(httpsCallable<any, any>(functions, 'ext-tangocrypto-auth-issueToken')(data)).to.eventually.rejectedWith(Error)
 
   })
 
@@ -131,7 +131,7 @@ Not Before: 2023-08-04T12:32:31.364Z`,
       key: "a401010327200621582083320c141cc15bcea0857d2ecea37a63ec4b05ccc0f37c9abe4b367b5da8c0f8"
     }
 
-    await expect(httpsCallable<any, any>(functions, 'ext-greet-the-world-issueToken')(data)).to.eventually.rejectedWith(Error)
+    await expect(httpsCallable<any, any>(functions, 'ext-tangocrypto-auth-issueToken')(data)).to.eventually.rejectedWith(Error)
 
   })
 });

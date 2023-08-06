@@ -15,6 +15,6 @@
     }
   },
   "extensions": {
-    "greet-the-world": "../.."
+    "tangocrypto-auth": "../.."
   }
 }
