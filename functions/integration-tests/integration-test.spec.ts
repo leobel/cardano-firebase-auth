@@ -20,15 +20,6 @@ describe("tangocrypto-auth", () => {
     connectAuthEmulator(auth, 'http://127.0.0.1:9099');
   })
 
-  it("should respond with the configured greeting", async () => {
-    const expected = "Hello World from tangocrypto-auth";
-
-    const httpFunctionUri = "http://localhost:5001/demo-test/us-central1/ext-tangocrypto-auth-greetTheWorld/";
-    const res = await axios.get(httpFunctionUri);
-
-    expect(res.data).to.eql(expected);
-  })
-
   it("should respond with a message to sign", async () => {
     const data = {
       "address": "addr1q97saku7cvu25at5feh5zq822j3apv9kaktc2w6jrp8d4h77e28nn969w0auevwz6dylkf8hg8l8knwpj6flp53g0naqe2v2ec",

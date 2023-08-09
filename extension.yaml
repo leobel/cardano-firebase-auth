@@ -52,15 +52,6 @@ apis:
 # Learn more in the docs:
 # https://firebase.google.com/docs/extensions/reference/extension-yaml#resources-field
 resources:
-  - name: greetTheWorld
-    type: firebaseextensions.v1beta.function
-    description: >-
-      HTTP request-triggered function that responds with a specified greeting message
-    properties:
-      # httpsTrigger is used for an HTTP triggered function.
-      httpsTrigger: {}
-      runtime: "nodejs16"
-
   - name: requestMessage
     type: firebaseextensions.v1beta.function
     description: This function creates a message to sign by a user.
@@ -80,16 +71,6 @@ resources:
 # Learn more in the docs:
 # https://firebase.google.com/docs/extensions/reference/extension-yaml#params-field
 params:
-  - param: GREETING
-    label: Greeting for the world
-    description: >-
-      What do you want to say to the world?
-      For example, Hello world? or What's up, world?
-    type: string
-    default: Hello
-    required: true
-    immutable: false
-
   - param: WEBSITE_URI
     label: Website URI
     description: >-

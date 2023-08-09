@@ -7,16 +7,25 @@ Learn more about writing a PREINSTALL.md file in the docs:
 https://firebase.google.com/docs/extensions/publishers/user-documentation#writing-preinstall
 -->
 
-Use this extension to send a friendly greeting.
+Use this extension to allow your community of users to authenticate with Cardano Web3 wallets.
 
-When triggered by an HTTP request, this extension responds with your specified friendly greeting.
+## Before Start
+
+This extension requires a certificate of [the service account](https://firebase.google.com/support/guides/service-accounts). To generate it go to **Firebase Console** > **Your Project** > **Project Settings** > **Service Accounts** and click the **Generate new private key** button.
+
+Your service account must have the **Service Account Token Creator** role. This extension needs it to issue [custom tokens](https://firebase.google.com/docs/auth/admin/create-custom-tokens).
+
+During the installation process the installer will ask you about the certificate. Before you answer, you need to convert the certificate to extension variables. We created an online converter that automates this process.
+
+*  [🛠 Open Service Account Converter](https://moralisweb3.github.io/firebase-extensions/service-account-converter/)
 
 <!-- We recommend keeping the following section to explain how billing for Firebase Extensions works -->
-# Billing
+## Billing
 
-This extension uses other Firebase or Google Cloud Platform services which may have associated charges:
+This extension uses the following services:
 
-<!-- List all products the extension interacts with -->
-- Cloud Functions
+* Firebase Cloud Functions and Firebase Authentication, this extension requires the pay as you go plan ([pricing](https://firebase.google.com/pricing))
+* [Secret Manager](https://cloud.google.com/secret-manager/) service ([pricing](https://cloud.google.com/secret-manager/pricing)) from the Google Cloud to protect a sensitive configuration of the extension
+* Moralis Auth API ([pricing](https://moralis.io/pricing/)) to handle an authentication flow.
 
-When you use Firebase Extensions, you're only charged for the underlying resources that you use. A paid-tier billing plan is only required if the extension uses a service that requires a paid-tier plan, for example calling to a Google Cloud Platform API or making outbound network requests to non-Google services. All Firebase services offer a free tier of usage. [Learn more about Firebase billing.](https://firebase.google.com/pricing)
+You are responsible for any costs associated with your use of these services.
